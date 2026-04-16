@@ -59,47 +59,60 @@ watch(() => route.path, (path) => {
 
 const navGroups = [
   {
-    key: 'billing',
-    label: '收费管理',
-    icon: 'billing',
-    prefix: '/app/billing',
+    key: 'billing', label: '收费管理', icon: 'billing', prefix: '/app/billing',
     children: [
       { label: '收费看板', path: '/app/billing/dashboard' },
-      { label: '收费中心', path: '/app/billing/center' },
-      { label: '账单管理', path: '/app/billing/bills' },
-      { label: '收费历史记录', path: '/app/billing/history' },
-      { label: '收费项目定义', path: '/app/billing/settings' }
+      { label: '收费中心', path: '/app/billing/center', group: '前台收费' },
+      { label: '预存费', path: '/app/billing/predeposit', group: '前台收费' },
+      { label: '交款申请', path: '/app/billing/payment-apply', group: '前台收费' },
+      { label: '催费中心', path: '/app/billing/reminder', group: '前台收费' },
+      { label: '收费历史记录', path: '/app/billing/history', group: '前台收费' },
+      { label: '客户零头账户', path: '/app/billing/odd-account', group: '前台收费' },
+      { label: '生成账单', path: '/app/billing/generate', group: '应收管理' },
+      { label: '自动生成账单', path: '/app/billing/auto-bill', group: '应收管理' },
+      { label: '账单管理', path: '/app/billing/bills', group: '应收管理' },
+      { label: '减免申请', path: '/app/billing/reduction', group: '应收管理' },
+      { label: '固定金额分摊', path: '/app/billing/amort', group: '应收管理' },
+      { label: '费用调整记录', path: '/app/billing/fee-adjust', group: '应收管理' },
+      { label: '指定减免金额统计', path: '/app/billing/designated-reduction', group: '应收管理' },
+      { label: '退款管理', path: '/app/billing/refund', group: '退款管理' },
+      { label: '仪表抄表', path: '/app/billing/meter', group: '仪表抄表' },
+      { label: '票据管理', path: '/app/billing/invoice', group: '票据管理' },
+      { label: '收费项目定义', path: '/app/billing/settings', group: '收费设置' },
+      { label: '收费标准设置', path: '/app/billing/standard', group: '收费设置' },
+      { label: '收费标准绑定统计', path: '/app/billing/bind-stats', group: '收费设置' },
+      { label: '支付方式配置', path: '/app/billing/payment-method', group: '收费设置' }
     ]
   },
   {
-    key: 'finlease',
-    label: '招商租赁',
-    icon: 'store',
-    prefix: '/app/finlease',
+    key: 'finlease', label: '招商租赁', icon: 'store', prefix: '/app/finlease',
     children: [
-      { label: '租赁房源管理', path: '/app/finlease/properties' },
-      { label: '洽谈与合同', path: '/app/finlease/negotiation' },
-      { label: '租售订单管理', path: '/app/finlease/orders' },
-      { label: '租售统计报表', path: '/app/finlease/report' }
+      { label: '租赁房源管理', path: '/app/finlease/properties', group: '租赁房源管理' },
+      { label: '洽谈与合同', path: '/app/finlease/negotiation', group: '收入合同管理' },
+      { label: '租售订单管理', path: '/app/finlease/orders', group: '收入合同管理' },
+      { label: '租售统计报表', path: '/app/finlease/report', group: '合同报表' }
     ]
   },
   {
-    key: 'finance',
-    label: '财务管理',
-    icon: 'finance',
-    prefix: '/app/finance',
+    key: 'finance', label: '财务管理', icon: 'finance', prefix: '/app/finance',
     children: [
-      { label: '综合报表', path: '/app/finance/report' },
-      { label: '应收月度统计', path: '/app/finance/receivable' },
-      { label: '已收费用日报', path: '/app/finance/collection' },
-      { label: '欠费统计', path: '/app/finance/arrears' }
+      { label: '常用报表', path: '/app/finance/common', group: '常用报表' },
+      { label: '综合报表', path: '/app/finance/report', group: '常用报表' },
+      { label: '应收月度统计', path: '/app/finance/receivable', group: '常用报表' },
+      { label: '已收费用日报', path: '/app/finance/collection', group: '常用报表' },
+      { label: '费用报表', path: '/app/finance/fee-report', group: '费用报表' },
+      { label: '月报表', path: '/app/finance/monthly', group: '月报表' },
+      { label: '保证金', path: '/app/finance/deposit', group: '保证金' },
+      { label: '年度报表', path: '/app/finance/annual', group: '年度报表' },
+      { label: '欠费统计', path: '/app/finance/arrears', group: '欠费报表' },
+      { label: '欠费报表', path: '/app/finance/arrears-report', group: '欠费报表' },
+      { label: '费用减免统计', path: '/app/finance/reduction', group: '费用减免统计' },
+      { label: '自定义报表', path: '/app/finance/custom', group: '自定义报表' },
+      { label: '目标管理', path: '/app/finance/goal', group: '目标管理' }
     ]
   },
   {
-    key: 'access',
-    label: '门禁管理',
-    icon: 'shield',
-    prefix: '/app/access',
+    key: 'access', label: '门禁管理', icon: 'shield', prefix: '/app/access',
     children: [
       { label: '员工通行管理', path: '/app/access/employee' },
       { label: '访客通行管理', path: '/app/access/visitor' },
@@ -107,10 +120,7 @@ const navGroups = [
     ]
   },
   {
-    key: 'rental',
-    label: '租售板块',
-    icon: 'building',
-    prefix: '/app/rental',
+    key: 'rental', label: '租售板块', icon: 'building', prefix: '/app/rental',
     children: [
       { label: '房源信息管理', path: '/app/rental/properties' },
       { label: '租售意向管理', path: '/app/rental/intention' },
@@ -119,10 +129,7 @@ const navGroups = [
     ]
   },
   {
-    key: 'leasing',
-    label: '招租板块',
-    icon: 'megaphone',
-    prefix: '/app/leasing',
+    key: 'leasing', label: '招租板块', icon: 'megaphone', prefix: '/app/leasing',
     children: [
       { label: '招租房源管理', path: '/app/leasing/properties' },
       { label: '招商线索管理', path: '/app/leasing/leads' },
@@ -132,26 +139,34 @@ const navGroups = [
     ]
   },
   {
-    key: 'property',
-    label: '房产资源',
-    icon: 'property',
-    prefix: '/app/property',
+    key: 'property', label: '房产资源', icon: 'property', prefix: '/app/property',
     children: [
-      { label: '物业资源管理', path: '/app/property/resources' },
-      { label: '资源类型管理', path: '/app/property/types' },
-      { label: '房态统计', path: '/app/property/stats' }
+      { label: '物业资源管理', path: '/app/property/resources', group: '房产资源管理' },
+      { label: '资源类型管理', path: '/app/property/types', group: '房产资源管理' },
+      { label: '管家管理', path: '/app/property/steward', group: '房产资源管理' },
+      { label: '房产资源平面图', path: '/app/property/floorplan', group: '房产资源统计' },
+      { label: '微信绑定状态统计', path: '/app/property/wechat-bind', group: '房产资源统计' },
+      { label: '车位状态统计', path: '/app/property/parking', group: '房产资源统计' },
+      { label: '房间绑定业主统计', path: '/app/property/room-bind', group: '房产资源统计' },
+      { label: '房态统计', path: '/app/property/stats', group: '房产资源统计' }
     ]
   },
   {
-    key: 'system',
-    label: '系统管理',
-    icon: 'settings',
-    prefix: '/app/system',
+    key: 'system', label: '系统管理', icon: 'settings', prefix: '/app/system',
     children: [
-      { label: '员工管理', path: '/app/system/employees' },
-      { label: '组织机构', path: '/app/system/org' },
-      { label: '角色管理', path: '/app/system/roles' },
-      { label: '操作日志', path: '/app/system/logs' }
+      { label: '系统初始化', path: '/app/system/init', group: '系统设置' },
+      { label: '操作日志', path: '/app/system/logs', group: '系统设置' },
+      { label: '轮播图设置', path: '/app/system/banner', group: '系统设置' },
+      { label: '参数设置', path: '/app/system/params', group: '系统设置' },
+      { label: '打印模板管理', path: '/app/system/print-template', group: '系统设置' },
+      { label: '组织机构', path: '/app/system/org', group: '组织架构' },
+      { label: '用户组织设置', path: '/app/system/user-org', group: '组织架构' },
+      { label: '员工管理', path: '/app/system/employees', group: '组织架构' },
+      { label: '权限管理', path: '/app/system/permission', group: '组织架构' },
+      { label: '自定义用户组', path: '/app/system/custom-group', group: '组织架构' },
+      { label: '消息接收设置', path: '/app/system/message', group: '消息设置' },
+      { label: '合同模板管理', path: '/app/system/contract-template', group: '合同设置' },
+      { label: '角色管理', path: '/app/system/roles', group: '角色管理' }
     ]
   }
 ]
