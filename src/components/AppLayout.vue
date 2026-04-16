@@ -11,7 +11,12 @@ const sidebarCollapsed = ref(false)
 const expandedGroups = ref({
   access: false,
   rental: false,
-  leasing: false
+  leasing: false,
+  billing: false,
+  finance: false,
+  property: false,
+  system: false,
+  finlease: false
 })
 
 function toggleGroup(group) {
@@ -45,9 +50,51 @@ watch(() => route.path, (path) => {
   if (path.startsWith('/app/access')) expandedGroups.value.access = true
   if (path.startsWith('/app/rental')) expandedGroups.value.rental = true
   if (path.startsWith('/app/leasing')) expandedGroups.value.leasing = true
+  if (path.startsWith('/app/billing')) expandedGroups.value.billing = true
+  if (path.startsWith('/app/finance')) expandedGroups.value.finance = true
+  if (path.startsWith('/app/property')) expandedGroups.value.property = true
+  if (path.startsWith('/app/system')) expandedGroups.value.system = true
+  if (path.startsWith('/app/finlease')) expandedGroups.value.finlease = true
 }, { immediate: true })
 
 const navGroups = [
+  {
+    key: 'billing',
+    label: '收费管理',
+    icon: 'billing',
+    prefix: '/app/billing',
+    children: [
+      { label: '收费看板', path: '/app/billing/dashboard' },
+      { label: '收费中心', path: '/app/billing/center' },
+      { label: '账单管理', path: '/app/billing/bills' },
+      { label: '收费历史记录', path: '/app/billing/history' },
+      { label: '收费项目定义', path: '/app/billing/settings' }
+    ]
+  },
+  {
+    key: 'finlease',
+    label: '招商租赁',
+    icon: 'store',
+    prefix: '/app/finlease',
+    children: [
+      { label: '租赁房源管理', path: '/app/finlease/properties' },
+      { label: '洽谈与合同', path: '/app/finlease/negotiation' },
+      { label: '租售订单管理', path: '/app/finlease/orders' },
+      { label: '租售统计报表', path: '/app/finlease/report' }
+    ]
+  },
+  {
+    key: 'finance',
+    label: '财务管理',
+    icon: 'finance',
+    prefix: '/app/finance',
+    children: [
+      { label: '综合报表', path: '/app/finance/report' },
+      { label: '应收月度统计', path: '/app/finance/receivable' },
+      { label: '已收费用日报', path: '/app/finance/collection' },
+      { label: '欠费统计', path: '/app/finance/arrears' }
+    ]
+  },
   {
     key: 'access',
     label: '门禁管理',
@@ -82,6 +129,29 @@ const navGroups = [
       { label: '招商智能匹配', path: '/app/leasing/matching' },
       { label: '招商进度管理', path: '/app/leasing/progress' },
       { label: '招商数据分析', path: '/app/leasing/stats' }
+    ]
+  },
+  {
+    key: 'property',
+    label: '房产资源',
+    icon: 'property',
+    prefix: '/app/property',
+    children: [
+      { label: '物业资源管理', path: '/app/property/resources' },
+      { label: '资源类型管理', path: '/app/property/types' },
+      { label: '房态统计', path: '/app/property/stats' }
+    ]
+  },
+  {
+    key: 'system',
+    label: '系统管理',
+    icon: 'settings',
+    prefix: '/app/system',
+    children: [
+      { label: '员工管理', path: '/app/system/employees' },
+      { label: '组织机构', path: '/app/system/org' },
+      { label: '角色管理', path: '/app/system/roles' },
+      { label: '操作日志', path: '/app/system/logs' }
     ]
   }
 ]
@@ -137,6 +207,26 @@ const navGroups = [
               <!-- Megaphone icon for leasing -->
               <svg v-if="group.icon === 'megaphone'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+              </svg>
+              <!-- Billing icon -->
+              <svg v-if="group.icon === 'billing'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+              <!-- Finance icon -->
+              <svg v-if="group.icon === 'finance'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 9h20M8 15h2M14 15h2"/>
+              </svg>
+              <!-- Property icon -->
+              <svg v-if="group.icon === 'property'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+              </svg>
+              <!-- Settings icon -->
+              <svg v-if="group.icon === 'settings'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+              </svg>
+              <!-- Store icon for finlease -->
+              <svg v-if="group.icon === 'store'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9l1.5-5h15L21 9"/><path d="M12 9v12"/>
               </svg>
             </span>
             <span v-show="!sidebarCollapsed" class="nav-label">{{ group.label }}</span>
