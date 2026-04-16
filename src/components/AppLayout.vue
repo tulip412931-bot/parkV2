@@ -16,7 +16,8 @@ const expandedGroups = ref({
   finance: false,
   property: false,
   system: false,
-  finlease: false
+  finlease: false,
+  invoice: false
 })
 
 function toggleGroup(group) {
@@ -55,6 +56,7 @@ watch(() => route.path, (path) => {
   if (path.startsWith('/app/property')) expandedGroups.value.property = true
   if (path.startsWith('/app/system')) expandedGroups.value.system = true
   if (path.startsWith('/app/finlease')) expandedGroups.value.finlease = true
+  if (path.startsWith('/app/invoice')) expandedGroups.value.invoice = true
 }, { immediate: true })
 
 const navGroups = [
@@ -82,6 +84,17 @@ const navGroups = [
       { label: '收费标准设置', path: '/app/billing/standard', group: '收费设置' },
       { label: '收费标准绑定统计', path: '/app/billing/bind-stats', group: '收费设置' },
       { label: '支付方式配置', path: '/app/billing/payment-method', group: '收费设置' }
+    ]
+  },
+  {
+    key: 'invoice', label: '票通发票', icon: 'invoice', prefix: '/app/invoice',
+    children: [
+      { label: '发票看板', path: '/app/invoice/dashboard' },
+      { label: '发票开具', path: '/app/invoice/create' },
+      { label: '发票管理', path: '/app/invoice/manage' },
+      { label: '发票查验', path: '/app/invoice/verify' },
+      { label: '统计分析', path: '/app/invoice/stats' },
+      { label: '发票设置', path: '/app/invoice/settings' }
     ]
   },
   {
@@ -242,6 +255,10 @@ const navGroups = [
               <!-- Store icon for finlease -->
               <svg v-if="group.icon === 'store'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z"/><path d="M3 9l1.5-5h15L21 9"/><path d="M12 9v12"/>
+              </svg>
+              <!-- Invoice icon for 票通发票 -->
+              <svg v-if="group.icon === 'invoice'" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
               </svg>
             </span>
             <span v-show="!sidebarCollapsed" class="nav-label">{{ group.label }}</span>

@@ -26,3 +26,6 @@ export function useToast() {
     removeToast
   }
 }
+
+// Direct named export for convenience: import { showToast } from '@/composables/useToast'
+export { showToast }

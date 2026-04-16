@@ -83,6 +83,14 @@ const routes = [
       { path: 'system/contract-template', name: 'ContractTemplate', component: () => import('@/views/system/ContractTemplateView.vue'), meta: { title: '合同模板管理', breadcrumb: ['系统管理', '合同设置', '合同模板管理'] } },
       { path: 'system/roles', name: 'RoleManage', component: () => import('@/views/system/RoleManageView.vue'), meta: { title: '角色管理', breadcrumb: ['系统管理', '角色管理'] } },
 
+      // ===== 票通发票 =====
+      { path: 'invoice/dashboard', name: 'InvoiceDashboard', component: () => import('@/views/invoice/InvoiceDashboardView.vue'), meta: { title: '发票看板', breadcrumb: ['票通发票', '发票看板'] } },
+      { path: 'invoice/create', name: 'InvoiceCreate', component: () => import('@/views/invoice/InvoiceCreateView.vue'), meta: { title: '发票开具', breadcrumb: ['票通发票', '发票开具'] } },
+      { path: 'invoice/manage', name: 'InvoiceManageV2', component: () => import('@/views/invoice/InvoiceManageView.vue'), meta: { title: '发票管理', breadcrumb: ['票通发票', '发票管理'] } },
+      { path: 'invoice/verify', name: 'InvoiceVerify', component: () => import('@/views/invoice/InvoiceVerifyView.vue'), meta: { title: '发票查验', breadcrumb: ['票通发票', '发票查验'] } },
+      { path: 'invoice/stats', name: 'InvoiceStats', component: () => import('@/views/invoice/InvoiceStatsView.vue'), meta: { title: '统计分析', breadcrumb: ['票通发票', '统计分析'] } },
+      { path: 'invoice/settings', name: 'InvoiceSettings', component: () => import('@/views/invoice/InvoiceSettingsView.vue'), meta: { title: '发票设置', breadcrumb: ['票通发票', '发票设置'] } },
+
       // ===== 招商租赁 =====
       { path: 'finlease/properties', name: 'LeaseProperty', component: () => import('@/views/finlease/LeasePropertyView.vue'), meta: { title: '租赁房源管理', breadcrumb: ['招商租赁', '租赁房源管理'] } },
       { path: 'finlease/negotiation', name: 'LeaseNegotiation', component: () => import('@/views/finlease/LeaseNegotiationView.vue'), meta: { title: '洽谈与合同', breadcrumb: ['招商租赁', '洽谈与合同'] } },
