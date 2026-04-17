@@ -15,6 +15,7 @@ const routes = [
       { path: 'billing/dashboard', name: 'BillingDashboard', component: () => import('@/views/billing/BillingDashboardView.vue'), meta: { title: '收费看板', breadcrumb: ['收费管理', '收费看板'] } },
       // 前台收费
       { path: 'billing/center', name: 'ChargeCenter', component: () => import('@/views/billing/ChargeCenterView.vue'), meta: { title: '收费中心', breadcrumb: ['收费管理', '前台收费', '收费中心'] } },
+      { path: 'billing/charge-detail', name: 'ChargeDetail', component: () => import('@/views/billing/ChargeDetailView.vue'), meta: { title: '收费对象详情', breadcrumb: ['收费管理', '前台收费', '收费中心', '收费对象详情'] } },
       { path: 'billing/predeposit', name: 'PreDeposit', component: () => import('@/views/billing/PreDepositView.vue'), meta: { title: '预存费', breadcrumb: ['收费管理', '前台收费', '预存费'] } },
       { path: 'billing/payment-apply', name: 'PaymentApply', component: () => import('@/views/billing/PaymentApplyView.vue'), meta: { title: '交款申请', breadcrumb: ['收费管理', '前台收费', '交款申请'] } },
       { path: 'billing/reminder', name: 'CollectionReminder', component: () => import('@/views/billing/CollectionReminderView.vue'), meta: { title: '催费中心', breadcrumb: ['收费管理', '前台收费', '催费中心'] } },
